@@ -1,5 +1,5 @@
 # izoo-rtroduction
-Kurs R dla doktorantów IZ-PIB
+###Kurs R dla doktorantów IZ-PIB
 
 **ŚRODA, 15.02.2017**
 - 8.15 – 9.45	Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych).
@@ -17,7 +17,7 @@ Kurs R dla doktorantów IZ-PIB
 - 8.15 – 9.45	Jak używać wtyczek programu R?
 - 10.00 – 11.30	Bioconductor - bioinformatyczne narzędzie środowiska R.
 
-Ważne strony i kursy R:
+###Ważne strony i kursy R:
 https://cran.r-project.org/doc/contrib/Komsta-Wprowadzenie.pdf
 http://biecek.pl/R/
 
