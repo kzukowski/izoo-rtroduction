@@ -18,8 +18,10 @@
 - 10.00 – 11.30	Bioconductor - bioinformatyczne narzędzie środowiska R.
 
 ###Ważne strony i kursy R:
-https://cran.r-project.org/doc/contrib/Komsta-Wprowadzenie.pdf --
-http://biecek.pl/R/ --
+https://cran.r-project.org/doc/contrib/Komsta-Wprowadzenie.pdf \n
+ 
+http://biecek.pl/R/
+
 
 https://www.r-bloggers.com
 
