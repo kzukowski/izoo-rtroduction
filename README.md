@@ -17,3 +17,15 @@ Kurs R dla doktorantów IZ-PIB
 - 8.15 – 9.45	Jak używać wtyczek programu R?
 - 10.00 – 11.30	Bioconductor - bioinformatyczne narzędzie środowiska R.
 
+Ważne strony i kursy R:
+https://cran.r-project.org/doc/contrib/Komsta-Wprowadzenie.pdf
+http://biecek.pl/R/
+
+https://www.r-bloggers.com
+
+https://www.rstudio.com/online-learning/
+https://www.coursera.org/courses?query=R
+https://www.datacamp.com/community/search?utf8=✓&query=R
+https://www.udemy.com/courses/search/?q=R&src=ukw&lang=en
+
+
