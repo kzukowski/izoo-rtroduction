@@ -28,4 +28,6 @@ https://www.coursera.org/courses?query=R <br />
 https://www.datacamp.com/community/search?utf8=✓&query=R <br />
 https://www.udemy.com/courses/search/?q=R&src=ukw&lang=en <br />
 
+https://opendatascience.com/blog/notable-r-package-updates/ <br />
+
 
