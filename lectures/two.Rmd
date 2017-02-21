@@ -1,0 +1,584 @@
+---
+title: '2: Korelacja i regresja, modele liniowe'
+author: "Kacper Żukowski"
+date: "20 February 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## przypomnienie...
+
+- użycie prostych funkcji,
+- tworzenie wektorów, macierzy, tablic,
+- proste statystyki,
+- proste wykresy,
+- wczytywanie danych...
+
+## ...
+
+```{r prak1, echo=TRUE, results="hide"}
+
+Pop <- c ("A", "A", "A", "A", "A", "B", "B", "B", "B")
+Ht <- rnorm(9, 172, 10)
+Sx <- c("Female", "Female", "Female", "Male", "Male",
+        "Female", "Male", "Male", "Female")
+
+myData <- data.frame(Population=Pop, Height=Ht, Sex=Sx)
+
+dim(myData)
+summary(myData)
+str(myData)
+
+myData$HeightM <- round(myData$Height/100, 0)
+
+summary(myData)
+#boxplot(myData$Height~myData$Sex)
+
+```
+
+## ...
+
+```{r prak2, echo=TRUE, results=TRUE}
+
+myData
+
+```
+
+## ...
+
+```{r prak3, echo=TRUE, results=TRUE}
+
+dim(myData)
+summary(myData)
+
+```
+
+## ...
+
+```{r prak4, echo=TRUE, results=TRUE}
+
+str(myData)
+
+```
+
+## ...
+
+```{r prak5, echo=TRUE, results=TRUE}
+
+boxplot(myData$Height~myData$Sex)
+
+```
+
+## ...
+
+```{r prak6, echo=TRUE, eval=FALSE}
+
+?read.table
+
+```
+
+read.table(file, header = FALSE, sep = "", quote = "\"'", dec = ".",
+           na.strings = "NA", colClasses = NA, nrows = -1,
+           skip = 0, blank.lines.skip = TRUE, comment.char = "#")
+
+```{r prak7, echo=TRUE, results=TRUE}
+
+path <- "C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\data\\winequality\\"
+
+
+myData_red <- read.table(paste0(path, "winequality-red.csv"), 
+                        sep = ";", header = T)
+myData_white <- read.table(paste0(path, "winequality-white.csv"), 
+                           sep = ";", header = T)
+
+```
+
+
+## ...
+
+```{r prak8, echo=TRUE, results=TRUE}
+
+dim(myData_red)
+dim(myData_white)
+myData_red$wine <- "red"
+myData_white$wine <- "white"
+myData <- rbind(myData_red, myData_white)
+dim(myData)
+
+```
+
+## ...
+
+```{r prak9, echo=TRUE, results=TRUE}
+
+summary(myData)
+
+```
+
+## ...
+
+```{r prak10, echo=TRUE, results=TRUE}
+
+summary(myData[which(myData$wine=='red'),])[,9:12]
+
+```
+
+## ...
+
+```{r prak11, echo=TRUE, results=TRUE}
+
+table(myData$wine, round(myData$pH, 1))
+
+```
+
+## Zapisywanie danych
+
+```{r prak11a, echo=TRUE, eval=FALSE}
+
+?write.table
+
+```
+
+write.table(x, file = "", append = FALSE, quote = TRUE, sep = " ",
+            eol = "\n", na = "NA", dec = ".", row.names = TRUE,
+            col.names = TRUE, fileEncoding = "")
+
+## Zapisywanie danych
+
+```{r prak11b, echo=TRUE, results=TRUE}
+
+write.table(myData, paste0(path, "wine.tsv"), sep="\t", col.names=T, row.names=F, quote=F)
+
+```
+
+## Wykresy słupkowe (barplot)
+
+```{r prak12, echo=TRUE, results=TRUE}
+
+barplot(table(myData$wine, round(myData$pH, 1)), col = c("red", "white"))
+
+```
+
+## Wykresy słupkowe (barplot)
+
+```{r prak12a, echo=TRUE, results=TRUE}
+
+barplot(table(myData$wine, round(myData$pH, 1)), beside=T, col = c("red", "white"))
+
+```
+
+## Wykresy kołowe (pie)
+
+```{r prak13, echo=TRUE, results=TRUE}
+
+pie(table(myData$wine), col = c("red", "white"))
+
+```
+
+## Histogramy (hist)
+
+```{r prak14, echo=TRUE, results=TRUE}
+
+hist(myData$alcohol, 40)
+
+```
+
+## Histogramy (hist)
+
+```{r prak15, echo=TRUE, results=TRUE}
+
+hist(myData$alcohol, breaks=c(8, 9, 10, 11, 12, 13, 14, 15))
+
+```
+
+## wykres gęstości (plot)
+
+```{r prak16, echo=TRUE, results=TRUE}
+
+plot(density(myData$alcohol))
+
+```
+
+## wykres gęstości (plot) - ggplot2
+
+```{r prak17, echo=TRUE, results=TRUE}
+
+library(ggplot2)
+ggplot(myData, aes(x = alcohol)) + geom_density(alpha = 0.5)
+
+```
+
+## wykres gęstości (plot) - ggplot2
+
+```{r prak18, echo=TRUE, results=TRUE}
+
+library(ggplot2)
+ggplot(myData, aes(x = alcohol, fill = wine)) + geom_density(alpha = 0.5)
+
+```
+
+## Wykresy dwuwymiarowe
+
+```{r prak19, echo=TRUE, results=TRUE}
+
+plot(myData$alcohol, myData$pH, type="p", pch=20)
+
+```
+
+## Wykresy wielowymiarowe
+
+```{r prak20, echo=TRUE, results=TRUE}
+
+pairs(~alcohol+pH+sulphates+quality, data=myData, main="Simple Scatterplot Matrix")
+
+```
+
+## Wykresy funkcji
+
+<!-- rysuje wykres dystrybuanty rozkładu normalnego linia ciągła, a następnie dodaje dystrybuantę rozkładu t-Studenta o 1 stopniu swobody -->
+
+```{r prak21, echo=TRUE, results=TRUE}
+ 
+curve(pnorm(x), xlim=c(-4,4)); curve(pt(x,1), lty=2, add=T)
+
+```
+
+## Wykresy funkcji
+
+<!-- rysuje histogram 500 losowych liczb o rozkładzie normalnym wraz z „idealna” krzywa rozkładu -->
+
+```{r prak22, echo=TRUE, results=TRUE}
+
+hist(rnorm(1000), prob=TRUE); curve(dnorm(x), add=T)
+
+```
+
+## Wykresy funkcji
+
+<!-- rysuje wykres funkcji y = sin x w przedziale (−2Π, 2Π), a następnie dodaje wykres y = cos x, czerwona linia, w przedziale (−Π, Π) -->
+
+```{r prak23, echo=TRUE, results=TRUE}
+
+curve(sin(x), xlim=c(-2*pi,2*pi)); curve(cos(x), col="red", add=T, xlim=c(-pi, pi))
+
+```
+
+## Kurtoza
+
+```{r prak24a, echo=TRUE, results=TRUE}
+
+normData <- rnorm(100000)
+logisticData <- rlogis(100000)
+unitData <- runif(100000)
+
+#install.packages("moments")
+library(moments)
+
+kurtosis(normData) - 3
+kurtosis(logisticData) - 3
+kurtosis(unitData) - 3
+
+```
+
+## Kurtoza
+
+<!-- jedna z miar spłaszczenia rozkładu wartości cechy -->
+
+```{r prak24b, echo=TRUE, results=TRUE}
+
+kurtosis(normData) - 3
+hist(normData)
+
+```
+
+## Kurtoza
+
+```{r prak24c, echo=TRUE, results=TRUE}
+
+kurtosis(logisticData) - 3
+hist(logisticData)
+
+```
+
+## Kurtoza
+
+```{r prak24d, echo=TRUE, results=TRUE}
+
+kurtosis(unitData) - 3
+hist(unitData)
+
+```
+
+## Korelacja
+
+```{r prak24, echo=TRUE, results=TRUE}
+
+#round(cor(myData[, 1:12]), 1)
+round(cor(myData[, 1:3]), 1)
+
+round(cor(myData[, 1:3], method = "spearman"), 1)
+
+```
+
+## Korelacja
+
+```{r prak25, echo=TRUE, results=TRUE}
+
+help1 <- round(cor(myData[, 1:7]), 1)
+symnum(help1)
+
+```
+
+## Korelacja
+
+```{r prak26, echo=TRUE, results=TRUE}
+
+#install.packages("corrplot")
+library(corrplot)
+help1 <- round(cor(myData[, 1:3]), 1)
+corrplot(help1, method="circle")
+
+```
+
+https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html
+
+## Korelacja
+
+```{r prak27, echo=TRUE, results=TRUE}
+
+help1 <- round(cor(myData[, 5:8]), 1)
+corrplot(help1, order="hclust", addrect=2)
+
+```
+
+## Korelacja
+
+```{r prak28, echo=TRUE, results=TRUE}
+
+cor.test(myData$pH, myData$alcohol)
+
+```
+
+## Korelacja
+
+```{r prak29, echo=TRUE, results=TRUE}
+
+(x <- 1:20)
+(y <- round(rep(rnorm(4), 5), 1))
+
+cor.test(x, y)
+
+```
+
+## Regresja liniowa
+
+y = ax + b
+
+```{r prak30, echo=TRUE, results=TRUE}
+
+(x <- 1:10)
+(y <- c(19, 25, 14, 15, 24, 17, 19, 27, 29, 25))
+
+```
+
+## Regresja liniowa
+
+```{r prak31, echo=TRUE, results=TRUE}
+
+plot(y ~ x, xlab = "X", ylab = "Y", bty = "n", col = "red", pch = 19, ylim = c(0, 30), xlim = c(0, 10))
+
+```
+
+## Regresja liniowa
+
+```{r prak32, echo=TRUE, results=TRUE}
+
+fit1 <- lm(y ~ x)
+fit1
+
+```
+
+## Regresja liniowa
+
+```{r prak33, echo=TRUE, results=TRUE}
+
+summary(fit1)
+
+```
+
+## Regresja liniowa
+
+```{r prak34, echo=TRUE, results=TRUE}
+
+op <- par(mfrow = c(2, 2))
+plot(fit1)
+par(op)
+
+```
+
+## Regresja liniowa - ANOVA?
+
+```{r prak35, echo=TRUE, results=TRUE}
+
+anova(fit1)
+
+```
+
+## Regresja liniowa
+
+```{r prak36, echo=TRUE, results=TRUE}
+
+plot(y ~ x, xlab = "X", ylab = "Y", bty = "n", col = "red", pch = 19, ylim = c(0, 30), xlim = c(0, 10))
+abline(fit1, lty = 2)
+
+```
+
+## Regresja liniowa
+
+y = ax + b
+
+```{r prak37, echo=TRUE, results=TRUE}
+
+names(fit1)
+fit1$coefficients
+fit1$coefficients[1] # b
+fit1$coefficients[2] # a
+
+```
+
+## Regresja liniowa
+
+```{r prak38, echo=TRUE, results=TRUE}
+
+plot(y ~ x, xlab = "X", ylab = "Y", bty = "n", col = "red", pch = 19, ylim = c(0, 30), xlim = c(0, 10))
+abline(fit1, lty = 2)
+formula <- paste("y = ", round(fit1$coefficients[1], 2), " + ", round(fit1$coefficients[2], 2), "x")
+text(5, 12.5, formula)
+
+```
+
+## Regresja liniowa
+
+```{r prak39a, echo=TRUE, results=TRUE}
+
+plot(y ~ x, xlab = "X", ylab = "Y", bty = "n", col = "red", pch = 19, ylim = c(0, 30), xlim = c(0, 10))
+abline(fit1, lty = 2)
+res <- signif(residuals(fit1), 5)
+pre <- predict(fit1)
+segments(x, y, x, pre, col="red")
+
+```
+
+## Regresja liniowa +
+
+```{r prak39b, echo=TRUE, results=TRUE}
+
+names(myData)
+
+model1 <- lm(alcohol ~ wine + fixed.acidity + residual.sugar, data=myData)
+model1
+
+```
+
+## Regresja liniowa +
+
+```{r prak39c, echo=TRUE, results=TRUE}
+
+summary(model1)
+
+```
+
+## Regresja liniowa +
+
+```{r prak39cc, echo=TRUE, results=TRUE}
+
+anova(model1)
+
+```
+
+## Regresja liniowa +
+
+```{r prak39d, echo=TRUE, results=TRUE}
+
+model2 <- lm(alcohol ~ fixed.acidity + residual.sugar + fixed.acidity*residual.sugar, data=myData)
+model2
+
+```
+
+## Regresja liniowa +
+
+```{r prak39e, echo=TRUE, results=TRUE}
+
+summary(model2)
+
+```
+
+## Porównanie modeli
+
+```{r prak39f, echo=TRUE, results=TRUE}
+
+model3 <- lm(alcohol ~ wine + fixed.acidity + residual.sugar, data=myData)
+model4 <- lm(alcohol ~ fixed.acidity + residual.sugar, data=myData)
+
+anova(model3, model4)
+
+```
+
+## Anova
+
+```{r prak40a, echo=TRUE, results=TRUE}
+
+anova1 <- aov(alcohol ~ wine, data = myData)
+anova1
+
+```
+
+## Anova
+
+```{r prak40b, echo=TRUE, results=TRUE}
+
+anova(anova1)
+
+```
+
+## anova? lm?
+
+```{r prak40c, echo=TRUE, results=TRUE}
+
+anova(lm(alcohol ~ wine, data = myData))
+
+```
+
+## Anova
+
+```{r prak40d, echo=TRUE, results=TRUE}
+
+boxplot(myData$alcohol ~ myData$wine, col = c("red", "white"), xlab = "Wine type", ylab = "Alkohol [%]")
+
+```
+
+## Anova
+
+```{r prak40e, echo=TRUE, results=TRUE}
+
+anova2 <- aov(alcohol ~ wine, data = myData)
+postHoc <- TukeyHSD(anova2)
+postHoc
+
+```
+
+## Anova
+
+```{r prak40f, echo=TRUE, results=TRUE}
+
+plot(postHoc)
+
+```
+
+## Dziękuję za uwagę
+
+<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
+
