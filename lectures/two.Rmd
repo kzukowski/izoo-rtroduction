@@ -2,7 +2,10 @@
 title: '2: Korelacja i regresja, modele liniowe'
 author: "Kacper Żukowski"
 date: "20 February 2017"
-output: ioslides_presentation
+output:
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
 ---
 
 ```{r setup, include=FALSE}
