@@ -20,10 +20,15 @@
 - 10.00 – 11.30	Bioconductor - bioinformatyczne narzędzie środowiska R.
 
 ###Ważne strony i kursy R:
+
+https://github.com/mi2-warsaw/SER/blob/master/histoRia/ <br />
+**http://whyr.pl <br />
+
 https://cran.r-project.org/doc/contrib/Komsta-Wprowadzenie.pdf <br />
 http://biecek.pl/R/ <br />
 
-https://www.r-bloggers.com 
+https://rweekly.org <br />
+https://www.r-bloggers.com <br />
 
 https://www.rstudio.com/online-learning/ <br />
 https://www.coursera.org/courses?query=R <br />
