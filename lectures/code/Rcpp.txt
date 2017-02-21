@@ -1,3 +1,6 @@
+library(Rcpp)
+library(microbenchmark)
+
 sumR <- function(x) {
   n <- length(x)
   total <- 0
@@ -7,7 +10,7 @@ sumR <- function(x) {
   return(total)
 }
 
-library(Rcpp)
+
 cppFunction('
   double sumC(NumericVector x) {
     int n = x.size();
@@ -19,7 +22,6 @@ cppFunction('
   }
 ')
 
-library(microbenchmark)
 x <- runif(100000)
 microbenchmark(
   sum(x),

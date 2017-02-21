@@ -34,13 +34,13 @@ citation()
 
 - to najszybciej rozwijający się **język prorgamowania/pakiet statystyczny**,
 
-<img src="c:\\izoo-rtroduction\\graph\\6a010534b1db25970b01b7c7fd58db970b-800wi.png" width="600">
+<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\6a010534b1db25970b01b7c7fd58db970b-800wi.png" width="600">
 
 ## Dlaczego Pakiet R?
 
 - możliwość tworzenia i upowszechnianie **pakietów** (CRAN, GitHub),
 
-<img src="c:\\izoo-rtroduction\\graph\\R-packages-growth-rate.png" width="700">
+<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\R-packages-growth-rate.png" width="700">
 
 ## Dlaczego Pakiet R?
 
@@ -51,7 +51,7 @@ citation()
 - **darmowy**,
 - **tworzy grafiki o wysokiej jakości**,
 - raporty __rmarkdown__ http://rmarkdown.rstudio.com/gallery.html, 
-- prezentacje <img src="c:\\izoo-rtroduction\\graph\\showpoint-3-select-a-powerpoint-presentation.png" width="20"> ,
+- prezentacje <img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\showpoint-3-select-a-powerpoint-presentation.png" width="20"> ,
 - książki https://bookdown.org/yihui/bookdown/ http://r4ds.had.co.nz
 - aplikcje __shiny__ https://shiny.rstudio.com/gallery/
 
@@ -167,7 +167,7 @@ help.search("mean")
 - własne funkcje,
 - całe analizy,
 - **praca w tle (linux),**
-- kod innych języków programowania w R <img src="c:\\izoo-rtroduction\\graph\\examples.png" width="40">
+- kod innych języków programowania w R <img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\examples.png" width="40">
 
 ## PAKIETY, WTYCZKI, CAŁE BIBLIOTEKI
 
