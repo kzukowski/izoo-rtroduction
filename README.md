@@ -22,7 +22,7 @@
 ###Ważne strony i kursy R:
 
 https://github.com/mi2-warsaw/SER/blob/master/histoRia/ <br />
-**http://whyr.pl <br />
+**http://whyr.pl** <br />
 
 https://cran.r-project.org/doc/contrib/Komsta-Wprowadzenie.pdf <br />
 http://biecek.pl/R/ <br />
