@@ -5,13 +5,13 @@
 - 8.15 – 9.45	Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych).
 - 10.00 – 11.30	Analiza danych statystycznych (analiza poziomu średniego wartości zmiennej, zróżnicowania oraz asymetrii rozkładu).
 
-[upload w katalogu "lectures"](https://github.com/kzukowski/izoo-rtroduction/blob/master/lectures/one.html)
+[upload w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/51b3eb4e/lectures/one.html)
 
 **ŚRODA, 22.02.2017**
 - 8.15 – 9.45	Korelacja i regresja analizy dynamiki zjawisk.
 - 10.00 – 11.30	Estymacja punktowa i przedziałowa.
 
-[upload w katalogu "lectures"](https://github.com/kzukowski/izoo-rtroduction/blob/master/lectures/two.html)
+[upload w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/51b3eb4e/lectures/two.html)
 
 **ŚRODA, 01.03.2017**
 - 8.15 – 9.45	Testy parametryczne.
