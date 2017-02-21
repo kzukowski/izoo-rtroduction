@@ -2,14 +2,12 @@
 ###Kurs R dla doktorantów IZ-PIB
 
 **ŚRODA, 15.02.2017**
-- 8.15 – 9.45	Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych).
-- 10.00 – 11.30	Analiza danych statystycznych (analiza poziomu średniego wartości zmiennej, zróżnicowania oraz asymetrii rozkładu).
+- Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych.
 
 [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/51b3eb4e/lectures/one.html)
 
 **ŚRODA, 22.02.2017**
-- 8.15 – 9.45	Korelacja i regresja analizy dynamiki zjawisk.
-- 10.00 – 11.30	Estymacja punktowa i przedziałowa.
+- Grafika w R. Korelacja i regresja, modele liniowe.
 
 [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/51b3eb4e/lectures/two.html)
 
