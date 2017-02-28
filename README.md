@@ -12,8 +12,9 @@
 [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/51b3eb4e/lectures/two.html)
 
 **ŚRODA, 01.03.2017**
-- 8.15 – 9.45	Testy parametryczne.
-- 10.00 – 11.30	Testy nieparametryczne.
+- Testowanie....
+
+[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/51b3eb4e/lectures/three.html)
 
 **ŚRODA, 15.03.2017**
 - 8.15 – 9.45	Jak używać wtyczek programu R?
