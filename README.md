@@ -4,17 +4,17 @@
 **ŚRODA, 15.02.2017**
 - Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych.
 
-[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/51b3eb4e/lectures/one.html)
+[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/one.html)
 
 **ŚRODA, 22.02.2017**
 - Grafika w R. Korelacja i regresja, modele liniowe.
 
-[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/51b3eb4e/lectures/two.html)
+[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/two.html)
 
 **ŚRODA, 01.03.2017**
 - Testowanie....
 
-[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/51b3eb4e/lectures/three.html)
+[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/three.html)
 
 **ŚRODA, 15.03.2017**
 - 8.15 – 9.45	Jak używać wtyczek programu R?
