@@ -1,0 +1,537 @@
+---
+title: "Testowanie..."
+author: "Kacper Żukowski"
+date: "1 marca 2017"
+output:
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Wybór testu
+<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\schemat.jpg" width="1000">
+
+## Generowanie rozkładów liczb
+
+rozkład dwumianowy
+```{r p1, echo=TRUE, eval=FALSE}
+?rbinom
+```
+
+rozkład dwumianowy
+```{r p2, echo=TRUE, eval=FALSE}
+?rnorm
+```
+
+## Generowanie rozkładów liczb - rozkład dwumianowy
+
+```{r p3, echo=TRUE, results=TRUE}
+
+(b1 <- rbinom(20, 1, 1))
+(b2 <- rbinom(20, 1, .9))
+(b3 <- rbinom(20, 1, .5))
+(b4 <- rbinom(20, 1, .1))
+
+```
+
+## Generowanie rozkładów liczb - rozkład normalny
+
+```{r p4, echo=TRUE, results=TRUE}
+
+(n1 <- rnorm(10))
+(n2 <- rnorm(20))
+(n3 <- rnorm(10, 50, 1))
+n4 <- rnorm(1000, 50, 10)
+
+```
+
+## Generowanie rozkładów liczb - rozkład normalny
+
+```{r p5, echo=TRUE, results=TRUE}
+
+summary(n1)
+#summary(n2)
+summary(n3)
+summary(n4)
+
+```
+
+## Generowanie rozkładów liczb - rozkład normalny
+
+```{r p6, echo=TRUE, results=TRUE}
+
+help1 <- rbind(data.frame(val=n1, set=1), data.frame(val=n2, set=2),
+               data.frame(val=n3, set=3), data.frame(val=n4, set=4)) 
+head(help1)
+tail(help1)
+
+```
+
+## Generowanie rozkładów liczb - rozkład normalny
+
+```{r p7, echo=TRUE, results=TRUE}
+
+boxplot(help1$val~help1$set)
+
+```
+
+## 1. Test Shapiro-Wilka
+
+- zastosowanie: testowanie zgodności z rozkładem normalnym (→ analiza wariancji, regresja liniowa),
+- hipoteza zerowa: dane pochodzą z rozkładu normalnego (np. zmienna Y w analizie wariancji, reszty modelu regresji)
+- wielkość próby: od 3 do 5000 obserwacji
+
+## 1. Test Shapiro-Wilka
+
+```{r p8, echo=TRUE, results=TRUE}
+
+dat <- rnorm(500)
+shapiro.test(dat)
+
+```
+
+## 1. Test Shapiro-Wilka
+
+```{r p9, echo=TRUE, results=TRUE}
+
+dat <- runif(100000)
+#shapiro.test(dat)
+#Error in shapiro.test(dat_log) : sample size must be between 3 and 5000
+#shapiro.test(dat_log)
+
+shapiro.test(sample(dat, 500))
+
+```
+
+## 2. Test Kołmogorowa-Smirnowa
+
+- zastosowanie: testowanie zgodności rozkładów dwóch prób,
+- hipoteza zerowa: rozkład próby X jest taki sam, jak rozkład próby Y
+
+- https://www.rdocumentation.org/packages/stats/versions/3.3.2/topics/ks.test
+
+## 2. Test Kołmogorowa-Smirnowa
+
+```{r p10, echo=TRUE, results=TRUE}
+
+x <- rnorm(100)
+y <- rnorm(100)
+z <- runif(100)
+
+tail(x)
+head(y)
+z[1:20]
+
+```
+
+## 2. Test Kołmogorowa-Smirnowa
+
+```{r p11, echo=TRUE, results=TRUE}
+
+ks.test(x, y)
+ks.test(x, z)
+
+```
+
+## 3. Test t studenta dla jednej próby
+
+- zastosowanie: testowanie równości średniej z próby z określoną wartością
+- hipoteza zerowa: H0: μ = μ0
+- założenie: próba pochodzi z rozkładu normalnego
+
+- t.test(x, mu=liczba)
+
+- https://www.datacamp.com/courses/intro-to-statistics-with-r-student-s-t-test
+
+## 3. Test t studenta dla jednej próby
+
+```{r p12, echo=TRUE, results=TRUE}
+
+x <- rnorm(1000)
+t.test(x, mu=0)
+
+```
+
+## 3. Test t studenta dla jednej próby
+
+```{r p13, echo=TRUE, results=TRUE}
+
+z <- rnorm(1000, 10, 1)
+t.test(z, mu=0)
+
+```
+
+## 4. Test t studenta dla dwóch prób niezależnych
+
+- zastosowanie: testowanie równości średnich dwóch niepowiązanych prób
+- hipoteza zerowa: H0: μ1 = μ2
+- założenia: próby pochodzą z rozkładu normalnego
+
+- t.test(x, y)
+
+## 4. Test t studenta dla dwóch prób niezależnych
+
+```{r p14, echo=TRUE, results=TRUE}
+
+x <- rnorm(1000, 10, 5)
+y <- rnorm(800, 10, 10)
+z <- rnorm(900, 15, 8)
+
+summary(x)
+summary(y)
+summary(z)
+
+```
+
+## 4. Test t studenta dla dwóch prób niezależnych
+
+```{r p15, echo=TRUE, results=TRUE}
+
+t.test(x, y)
+
+```
+
+## 4. Test t studenta dla dwóch prób niezależnych
+
+```{r p16, echo=TRUE, results=TRUE}
+
+t.test(x, z)
+
+```
+
+## 5. Test t studenta dla dwóch prób zależnych
+
+- zastosowanie: testowanie równości średnich dwóch powiązanych prób
+- hipoteza zerowa: H0: µ1 = µ2
+- założenia: próby pochodzą z rozkładu normalnego
+- próby są równoliczne
+
+- t.test(x, y, paired = T)
+
+## 5. Test t studenta dla dwóch prób zależnych
+
+```{r p17, echo=TRUE, results=TRUE}
+
+x <- rnorm(1000, 10, 5)
+y <- rnorm(1000, 10, 1)
+z <- rnorm(1000, 15, 5)
+
+summary(x)
+summary(y)
+summary(z)
+
+```
+
+## 5. Test t studenta dla dwóch prób zależnych
+
+```{r p18, echo=TRUE, results=TRUE}
+
+t.test(x, y, paired=T)
+
+```
+
+## 5. Test t studenta dla dwóch prób zależnych
+
+```{r p19, echo=TRUE, results=TRUE}
+
+t.test(x, z, paired=T)
+
+```
+
+## 6. Test Wilcoxona dla par obserwacji
+
+- zastosowanie: testowanie równości średnich jednej lub dwóch prób
+- hipoteza zerowa: H0: µ = µ0 lub H0: µ1 = µ2
+- uwaga: brak założeń dotyczących rozkładu prób
+
+- wilcox.test(x, mu=liczba)
+- wilcox.test(x, y)
+- wilcox.test(x, y, paired=T)
+
+- https://campus.datacamp.com/courses/r-for-sas-spss-and-stata-users-r-tutorial/chapter-18-comparing-groups?ex=14
+
+## 6. Test Wilcoxona dla par obserwacji
+
+```{r p20, echo=TRUE, results=TRUE}
+
+x <- runif(100)
+y <- rnorm(100)
+
+wilcox.test(x, mu=0)
+wilcox.test(y, mu=0)
+
+```
+
+## 6. Test Wilcoxona dla par obserwacji
+
+```{r p21, echo=TRUE, results=TRUE}
+
+wilcox.test(x, y)
+wilcox.test(x, y, paired=T)
+
+```
+
+## 7. Test Kruskala-Wallisa
+
+- zastosowanie: testowanie równości średnich wielu prób
+- uogólnienie testu Wilcoxona
+
+- kruskal.test(list(próba1, próba2, próba3, ...))
+
+## 7. Test Kruskala-Wallisa
+
+```{r p22, echo=TRUE, results=TRUE}
+
+w <- runif(200, 1, 2)
+x <- runif(200)
+y <- runif(200)
+z <- rnorm(200, .5, 1)
+
+summary(w)
+summary(x)
+#summary(y)
+summary(z)
+
+```
+
+## 7. Test Kruskala-Wallisa
+
+```{r p23, echo=TRUE, results=TRUE}
+
+kruskal.test(list(x, y, z))
+kruskal.test(list(w, x, y, z))
+
+```
+
+## 8. Test F
+
+- zastosowanie: testowanie jednorodności wariancji dwóch prób
+- hipoteza zerowa: H0: var1 = var2
+
+- var.test(próba1, próba2)
+
+## 8. Test F
+
+```{r p24, echo=TRUE, results=TRUE}
+
+x <- runif(200)
+y <- runif(200)
+z <- rnorm(200, .5, 1)
+
+summary(x)
+summary(y)
+summary(z)
+
+```
+
+## 8. Test F
+
+```{r p25, echo=TRUE, results=TRUE}
+
+var.test(x, y)
+
+```
+
+## 8. Test F
+
+```{r p26, echo=TRUE, results=TRUE}
+
+var.test(x, z)
+
+```
+
+## 9. Test Ansari-Bradley
+
+- zastosowanie: testowanie jednorodności wariancji dwóch prób
+- hipoteza zerowa: H0: var1 = var2
+
+- ansari.test(próba1, próba2)
+
+## 9. Test Ansari-Bradley
+
+```{r p27, echo=TRUE, results=TRUE}
+
+x <- runif(200)
+y <- runif(200)
+z <- rnorm(200, .5, 1)
+
+summary(x)
+summary(y)
+summary(z)
+
+```
+
+## 9. Test Ansari-Bradley
+
+```{r p28, echo=TRUE, results=TRUE}
+
+ansari.test(x, y)
+
+```
+
+## 9. Test Ansari-Bradley
+
+```{r p29, echo=TRUE, results=TRUE}
+
+ansari.test(x, z)
+
+```
+
+## 10. Test Bartletta
+
+- zastosowanie: testowanie jednorodności wariancji wielu prób
+- hipoteza zerowa: H0: var1 = var2 = var3 = ..
+
+- bartlett.test(list(x, y, ...))
+- bartlett.test(x, g=czynnik dzielący dane)
+
+## 10. Test Bartletta
+
+```{r p30, echo=TRUE, results=TRUE}
+
+x <- runif(200)
+y <- runif(200)
+z <- rnorm(200, .5, 1)
+
+bartlett.test(list(x, y, z))
+
+```
+
+## 11. Test prawdopodobieństwa sukcesu
+
+- zastosowanie: testowanie możliwości wystąpienia określonej liczby sukcesów w zadanej liczbie prób przy wskazanym prawdopodobieństwie
+
+- prop.test(liczba sukcesów, liczba prób, prawdopodobieństwo)
+
+```{r p31, echo=TRUE, results=TRUE}
+
+prop.test(50, 100, .5)
+
+```
+
+## 11. Test prawdopodobieństwa sukcesu
+
+```{r p32, echo=TRUE, results=TRUE}
+
+prop.test(50, 100, .25)
+
+```
+
+## 12. Test chi2 na niezależność
+
+- zastosowanie: testowanie równości częstości występowania poszczególnych cech w populacji
+- hipoteza zerowa: poszczególne cechy w populacji występują niezależnie od siebie, z równą częstością
+
+- chisq.test(table(zbiór danych))
+
+## 12. Test chi2 na niezależność
+
+```{r p33, echo=TRUE, results=TRUE}
+
+## From Agresti(2007) p.39
+M <- as.table(rbind(c(762, 327, 468), c(484, 239, 477)))
+dimnames(M) <- list(gender = c("F", "M"),
+                    party = c("Democrat","Independent", "Republican"))
+M
+chisq.test(M)
+
+```
+
+## 12. Test chi2 na niezależność
+
+```{r p33a, echo=TRUE, results=TRUE}
+
+lek=c(19,41,60)
+ctl=c(46,19,15)
+chisq.test(cbind(lek,ctl))
+
+```
+
+## 13. Dokładny test Fishera
+
+- odpowiednik testu chi2 dla małych liczebności w komórkach tablicy kontyngencji są niewielkie (< 10)
+- test chi2 oraz test Fishera „zastępują analizę wariancji” dla zmiennych skokowych
+
+## 13. Dokładny test Fishera
+
+```{r p34, echo=TRUE, results=TRUE}
+
+## From Agresti (1990, p. 61f; 2002, p. 91) 
+TeaTasting <- matrix(c(3, 1, 1, 3),
+              nrow = 2,
+              dimnames = list(Guess = c("Milk", "Tea"),
+                              Truth = c("Milk", "Tea")))
+TeaTasting
+fisher.test(TeaTasting)
+
+```
+
+## agricolae: Statistical Procedures for Agricultural Research
+
+- The Least Significant Difference (LSD)
+- korekty na wielokrotne testowanie?
+- Duncan’s New Multiple-Range Test
+- Tukey’s W Procedure (HSD)
+- Kruskal-Wallis: adjust P-values
+- Median test
+
+## 14. Test Duncan’a
+
+```{r p35, echo=TRUE, results=TRUE}
+
+#install.packages("agricolae")
+library(agricolae)
+data(sweetpotato)
+sweetpotato
+
+```
+
+## 14. Test Duncan’a
+
+```{r p36, echo=TRUE, results=TRUE}
+
+model <- aov(yield~virus, data=sweetpotato)
+model
+summary(model)
+duncan.test(model, "virus",console=TRUE)
+
+```
+
+## 14. Test Duncan’a
+
+```{r p37, echo=TRUE, results=TRUE}
+
+(out <- duncan.test(model, "virus",console=TRUE))
+
+```
+
+## 14. Test Duncan’a
+
+```{r p37a, echo=TRUE, results=TRUE}
+
+out$groups
+
+```
+
+## 14. Test Duncan’a
+
+```{r p38, echo=TRUE, results=TRUE}
+
+bar.err(out$means, horiz=T, xlim=c(0, 50))
+
+```
+
+## Dziękuję za uwagę
+
+<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
+
+## Bonus!
+
+https://www.rstudio.com/rviews/2017/02/22/how-to-teach-r-common-mistakes/
+
+
+
