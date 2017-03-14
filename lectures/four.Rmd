@@ -646,6 +646,7 @@ wordcloud(words = d$word, freq = d$freq, min.freq = 1,
 - agricolae
 - oraz inne https://awesome-r.com 
 
+- polecam - https://github.com/nehiljain/beikome-r-ppt
 
 ## Dziękuję za uwagę
 
