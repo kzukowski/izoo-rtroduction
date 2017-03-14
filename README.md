@@ -2,24 +2,16 @@
 ### Kurs R dla doktorantów IZ-PIB
 
 **ŚRODA, 15.02.2017**
-- Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych.
-
-[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/one.html)
+- Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych. [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/one.html)
 
 **ŚRODA, 22.02.2017**
-- Grafika w R. Korelacja i regresja, modele liniowe.
-
-[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/two.html)
+- Grafika w R. Korelacja i regresja, modele liniowe. [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/two.html)
 
 **ŚRODA, 01.03.2017**
-- Testowanie....
-
-[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/three.html)
+- Testowanie.... [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/three.html)
 
 **ŚRODA, 15.03.2017**
-- Pakiety, wtyczki, rozszerzenia...
-
-[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/97601725/lectures/four.html)
+- Pakiety, wtyczki, rozszerzenia... [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/97601725/lectures/four.html)
 
 ### Polecane strony i kursy R
 
