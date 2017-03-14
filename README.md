@@ -17,8 +17,9 @@
 [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/three.html)
 
 **ŚRODA, 15.03.2017**
-- 8.15 – 9.45	Jak używać wtyczek programu R?
-- 10.00 – 11.30	Bioconductor - bioinformatyczne narzędzie środowiska R.
+- Pakiety, wtyczki, rozszerzenia...
+
+[prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/97601725/lectures/four.html)
 
 ###Ważne strony i kursy R:
 
