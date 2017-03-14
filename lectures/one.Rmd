@@ -202,13 +202,13 @@ help.search("mean")
 
 ## Co jeszcze?
 
-- 15.02.2017 **8.15–11.30** Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Wstępna analiza danych. WyResy.
+- 15.02.2017 Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych.
 
-- 22.02.2017 **8.15–11.30** Korelacja i regresja analizy dynamiki zjawisk. Estymacja punktowa i przedziałowa. WyResy.
+- 22.02.2017 Grafika w R. Korelacja i regresja, modele liniowe.
 
-- 01.03.2017 **8.15–11.30** Testy parametryczne i nieparametryczne. WyResy.
+- 01.03.2017 Testowanie....
 
-- 15.03.2017 **8.15–11.30** Jak używać wtyczek programu R?, Bioconductor - bioinformatyczne narzędzie środowiska R.
+- 15.03.2017 Pakiety, wtyczki, rozszerzenia...
 
 ## Część praktyczna
 

@@ -1,0 +1,652 @@
+---
+title: "Pakiety, wtyczki, rozszerzenia..."
+author: "Kacper Żukowski"
+date: "15 marca 2017"
+output:
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Repozytoria: CRAN
+
+- CRAN - 10219 packages (13/03/2017)
+
+```{r w1, echo=TRUE, results=TRUE}
+
+index <- function(url, type="source", filters=NULL, head=10, cols=c("Package", "Version")){
+  contribUrl <- contrib.url(url, type=type)
+  p <- available.packages(contribUrl, type=type, filters=filters)
+  p[1:head, cols]
+}
+
+CRAN <- "http://cran.r-project.org"
+index(CRAN)
+
+```
+
+## Repozytoria inne niż CRAN
+
+- MRAN (Revolution Analytics) - 10255 packages (01/11/2016)
+
+```{r w2, echo=TRUE, results=TRUE}
+
+MRAN <- "https://mran.microsoft.com"
+index(CRAN)
+
+```
+
+## Repozytoria inne niż CRAN
+
+- R-forge - https://r-forge.r-project.org/ - 2050 packages (13/03/2017)
+
+```{r w3, echo=TRUE, results=TRUE}
+
+rforge <- "http://r-forge.r-project.org"
+#index(rforge)
+
+```
+
+## Repozytoria inne niż CRAN
+
+- BioConductor - http://bioconductor.org/ - 1300 packages (13/03/2017)
+
+```{r w4, echo=TRUE, results=TRUE}
+
+bioc <- local({
+  env <- new.env()
+  on.exit(rm(env))
+  evalq(source("http://bioconductor.org/biocLite.R", local=TRUE), env)
+  biocinstallRepos()
+})
+
+```
+
+## Repozytoria inne niż CRAN
+
+- BioConductor
+
+```{r w5, echo=TRUE, results=TRUE}
+ 
+bioc[grep("BioC", names(bioc))]
+
+index(bioc["BioCsoft"])
+
+```
+
+## Repozytoria inne niż CRAN
+
+- GiTHub, Bitbucket i inne - https://github.com/hadley, https://github.com/pbiecek/PogromcyDanych
+
+```{r w6, echo=TRUE, results=TRUE}
+
+if (!require(devtools)) {
+    install.packages("devtools")
+    require(devtools)
+}
+#install_github("pbiecek/PogromcyDanych")
+
+```
+
+## package::installr
+
+- pakiet umożliwiający zainstalowanie najnowszej wersji R z R oraz update pakietów
+- https://github.com/talgalili/installr/
+
+```{r w6a, echo=TRUE, results=TRUE}
+
+if(!require("installr")) install.packages('installr')
+library("installr")
+#updateR() # this will open dialog boxes to take you through the steps.
+
+```
+
+## package::readr
+
+- pakiet umożiwiające wczytywanie plików
+- https://github.com/tidyverse/readr
+- domyślny dla "Import Dataset" w RStudio
+
+- read.table() = read_tsv()
+
+```{r w7, echo=TRUE, results=TRUE}
+
+#install.packages("readr")
+#devtools::install_github("tidyverse/readr")
+
+library(readr)
+
+```
+
+## package::readr
+
+```{r w8, echo=TRUE, results=TRUE}
+
+path <- "C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\data\\winequality\\"
+
+myData_red1 <- read.table(paste0(path, "winequality-red.csv"), 
+                        sep = ";", header = T)
+myData_red2 <- read_csv2(paste0(path, "winequality-red.csv"), 
+                        col_names = T)
+
+```
+
+## package::readr
+
+https://cran.r-project.org/web/packages/readr/vignettes/column-types.html
+
+```{r w8a, echo=TRUE, results=TRUE}
+
+myData_red2 <- read_csv2(paste0(path, "winequality-red.csv"), 
+                        col_names = T, col_types = list(
+                        col_number(), col_number(), col_number(), col_number(),
+                        #col_number(), col_number(), col_integer(), col_number(),
+                        col_number(), col_number(), col_number(), col_number(), 
+                        col_number(), col_number(), col_number(), col_integer()
+                        ))
+
+```
+
+## package::readr
+
+```{r w9, echo=TRUE, results=TRUE}
+
+myData_red1[1:2,1:4]
+myData_red2[1:2,1:4]
+
+dim(myData_red1); dim(myData_red2)
+
+```
+
+## package::readxl
+
+- pakiet umożiwiające wczytywanie plików z Microsoft Excel
+- https://github.com/tidyverse/readxl
+
+```{r w9a, echo=TRUE, results=TRUE}
+
+#install.packages("readxl")
+#devtools::install_github("tidyverse/readxl")
+
+library(readxl)
+path <- "C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\data\\forestfires\\"
+
+forestfires <- read_excel(paste0(path, "forestfires.xlsx"), sheet = 1)
+
+```
+
+## package::readxl
+
+```{r w10, echo=TRUE, results=TRUE}
+
+forestfires
+
+```
+
+## package::rio
+
+- pakiet umożiwiające wczytywanie i zapisywanie plików
+- https://cran.r-project.org/web/packages/rio/vignettes/rio.html
+- dwie funkcje import() i export()
+
+```{r w9b, echo=TRUE, results=TRUE}
+
+#install.packages("rio")
+
+library("rio")
+head(import(paste0(path, "forestfires.xlsx")))
+
+```
+
+## package::validate
+
+- pakiet umożiwiające walidację wczytanych danych
+- https://github.com/data-cleaning/validate
+
+```{r w11, echo=TRUE, results=TRUE}
+
+#install.packages("validate")
+#install.packages("magrittr")
+
+library(validate)
+library(magrittr)
+forestfires %>% check_that(wind < 5) %>% summary()
+
+```
+
+## package::dplyr
+
+- pakiet umożiwiające transformację danych
+- https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
+
+```{r w12, echo=TRUE, results=TRUE}
+
+#install.packages("dplyr")
+library(dplyr)
+
+```
+
+## package::dplyr
+
+```{r w12aa, echo=TRUE, results=TRUE}
+
+names(forestfires)
+dim(forestfires)
+dim(unique(select(forestfires, month, temp)))
+
+```
+
+## package::dplyr
+
+```{r w12aaa, echo=TRUE, results=TRUE}
+
+head(distinct(select(forestfires, month, temp)))
+head(unique(select(forestfires, month, temp)))
+
+```
+
+## package::dplyr
+
+```{r w12a, echo=TRUE, results=TRUE}
+
+head(forestfires[forestfires$month == "aug" & forestfires$day == "sun", ])
+head(filter(forestfires, month == "aug", day == "sun"))
+
+```
+
+## package::dplyr
+
+```{r w12aaaa, echo=TRUE, results=TRUE}
+
+head(forestfires, n=2)
+# 1 km/h = 0.28 m/s
+head(mutate(forestfires, wind2 = round(wind * 0.28, 2)))
+
+```
+
+## package::dplyr
+
+```{r w12aaaaa, echo=TRUE, results=TRUE}
+
+daily <- group_by(forestfires, month)
+head(per_day <- summarise(daily, n_rain = n()))
+
+```
+
+## package::ggplot2
+
+- pakiet umożiwiające wizualizację danych
+- https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
+- https://www.datacamp.com/courses/data-visualization-with-ggplot2-1
+
+- http://www.r-graph-gallery.com/portfolio/ggplot2-package/
+
+```{r w12g, echo=TRUE, results=TRUE}
+
+#install.packages("ggplot2")
+library(ggplot2)
+
+```
+
+## package::ggplot2
+
+```{r w12g1, echo=TRUE, results=TRUE}
+
+c <- ggplot(per_day, aes(month, n_rain)) + geom_bar(stat="identity")
+c
+
+```
+
+## package::ggplot2
+
+```{r w12gg, echo=TRUE, results=TRUE}
+
+mon <- c("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec")
+c <- ggplot(per_day, aes(month, n_rain)) + geom_bar(stat="identity") + scale_x_discrete(limits=mon)
+c
+
+```
+
+## package::reshape/reshape2
+
+- pakiet umożliwiający transformację danych
+- http://seananderson.ca/2013/10/19/reshape.html
+
+```{r w13, echo=TRUE, results=TRUE}
+
+#install.packages("reshape2")
+library(reshape2)
+
+head(forestfires)
+
+```
+
+## package::reshape/reshape2
+
+```{r w13b, echo=TRUE, results=TRUE}
+
+forestfires <- as.data.frame(forestfires)
+forestfires_melt <- melt(forestfires, id.vars = c("month", "day"), 
+                         variable.name = "variable", value.name = "value")
+
+head(forestfires_melt)
+
+```
+
+## package::reshape/reshape2
+
+```{r w13c, echo=TRUE, results=TRUE}
+
+forestfires_melt_select <- select(forestfires_melt, month, value)
+head(forestfires_melt_select)
+
+```
+
+## package::ggplot2
+
+```{r w12g2, echo=TRUE, results=TRUE}
+
+d <- ggplot(forestfires_melt_select, aes(month)) + geom_bar(stat="count") + scale_x_discrete(limits=mon)
+d
+
+```
+
+## package::pedigree
+
+- pakiet umożliwiający analizę i transformację danych rodowodowych
+
+```{r p0, echo=TRUE, results=TRUE}
+
+#install.packages("pedigreemm")
+suppressPackageStartupMessages(library(pedigreemm))
+
+ped <- pedigree(sire = c(NA,NA,1, 1,4,5),
+dam = c(NA,NA,2,NA,3,2), label= 1:6)
+ped
+
+```
+
+## package::pedigree
+
+- pakiet umożliwiający analizę i transformację danych rodowodowych
+
+```{r p1, echo=TRUE, results=TRUE}
+
+(A <- getA(ped))
+
+```
+
+## package::pedigree
+
+```{r p2, echo=TRUE, results=TRUE}
+
+getAInv(ped)
+
+```
+
+## package::pedigree
+
+```{r p3, echo=TRUE, results=TRUE}
+
+suppressPackageStartupMessages(library(MASS))
+A <- as.matrix(A)
+invA <- ginv(A)
+(invA <- solve(A))
+
+```
+
+## package::... BLUP? rrBLUP or lme4
+
+- https://gist.github.com/timflutre/43daacf2c8868f609489
+
+```{r w14, echo=TRUE, results=TRUE}
+
+#install.packages("Matrix")
+#install.packages("rrBLUP")
+#install.packages("lme4")
+
+suppressPackageStartupMessages(library(MASS))
+suppressPackageStartupMessages(library(Matrix))
+suppressPackageStartupMessages(library(rrBLUP))
+suppressPackageStartupMessages(library(lme4))
+
+```
+
+## package::car
+
+- ANOVA
+
+```{r w15, echo=TRUE, results=TRUE}
+
+#install.packages("car")
+suppressPackageStartupMessages(library(car))
+
+sample.data <- data.frame(IV=factor(rep(1:4,each=20)), DV=rep(c(-3,-3,1,3), each=20) + rnorm(80))
+sample.data
+
+```
+
+## package::car
+
+```{r w16, echo=TRUE, results=TRUE}
+
+Anova(lm1 <- lm(DV ~ IV, data=sample.data, contrasts=list(IV=contr.poly)), type="III")
+
+```
+
+## package::ggmap
+
+- pakiet umożliwiający rysowanie map via GoogleMaps 
+
+```{r w17, echo=TRUE, results=TRUE}
+
+suppressPackageStartupMessages(library(ggmap))
+suppressPackageStartupMessages(library(ggplot2))
+
+path="C:/Users/kacper.zukowski/Dropbox/KS-KZ/Mapy/"
+d=as.data.frame(read.csv(paste0(path, "position.csv"), sep=",", header=T))
+#head(d)
+
+kk <- paste("feature:road|element:geometry|visibility:off","&style=feature:all|element:labels|visibility:off", sep="")
+map <- get_googlemap(zoom = 6, maptype = 'terrain', style = kk, scale = 2, color = "bw", center = c(lon = 18.7, lat=52.7))
+
+d1 <- d[d[,4]=="sa",]
+
+```
+
+## package::ggmap
+
+```{r w18, echo=TRUE, results=TRUE}
+
+p <- ggmap(map)
+p
+
+```
+
+## package::ggmap + ggplot2
+
+```{r w19, echo=TRUE, results=TRUE}
+
+p <- ggmap(map) + geom_point(aes(x=d1[1,2], y=d1[1,1]), color="black", size = 1, stroke = 5) +
+geom_point(aes(x=d1[2,2], y=d1[2,1]), color="red", size = 5, stroke = 5) +
+geom_point(aes(x=d1[3,2], y=d1[3,1]), color="blue", size=2) +
+geom_point(aes(x=d1[4,2], y=d1[4,1]), color="darkred", size=3, shape = 21) +
+geom_point(aes(x=d1[5,2], y=d1[5,1]), color="green", size = 7, stroke = 2) +
+geom_point(aes(x=d1[6,2], y=d1[6,1]), color="salmon", size=4, shape = 18) +
+geom_point(aes(x=d1[7,2], y=d1[7,1]), color="darkblue", size = 5, stroke = 3) +
+geom_point(aes(x=d1[8,2], y=d1[8,1]), color="white", size=2, shape = 17) +
+geom_point(aes(x=d1[9,2], y=d1[9,1]), color="pink", size = 5, stroke = 6) +
+geom_point(aes(x=d1[10,2], y=d1[10,1]), color="orange", size = 6, shape = 20)
+
+```
+
+## package::ggmap + ggplot2
+
+```{r w20, echo=TRUE, results=TRUE}
+
+p
+
+```
+
+## package::ggmap
+
+```{r 21, echo=TRUE, results=TRUE}
+
+map <- get_googlemap(zoom = 6, maptype = 'roadmap', style = kk, scale = 2, color = "color", center = c(lon = 0, lat=52.7))
+ggmap(map)
+
+```
+
+## package::ggmap
+
+```{r w22, echo=TRUE, results=TRUE}
+
+map <- get_googlemap(zoom = 3, maptype = 'hybrid', style = kk, scale = 2, color = "bw", center = c(lon = 18.7, lat=20))
+ggmap(map)
+
+```
+
+## package::ggmap
+
+```{r w23, echo=TRUE, results=TRUE}
+
+map <- get_googlemap(zoom = 18, maptype = 'hybrid', style = kk, scale = 2, color = "color", center = c(lon = 19.788, lat=50.086))
+ggmap(map)
+
+```
+
+## package::Rcmdr
+
+- Intuicyjny w obsłudze graficzny interfejs użytkownika (GUI) umożliwiający wykonanie podstawowych analiz danych
+- http://www.rcommander.com and http://quantup.pl/wp-content/uploads/2012/09/wprowadzenie_do_RCmdr.pdf
+
+```{r ww, echo=TRUE, results=TRUE}
+
+#install.packages("Rcmdr")
+#library(Rcmdr)
+
+```
+
+## package::sangerseqR via Bioconductor
+
+- pakiet umożliwiający odczyt i analizę danych z sekwenatorów sangerowskich
+- https://www.bioconductor.org/packages/release/bioc/html/sangerseqR.html
+- https://www.bioconductor.org/packages/release/bioc/vignettes/sangerseqR/inst/doc/sangerseq_walkthrough.pdf
+
+```{r b1, echo=TRUE, results=TRUE}
+
+#source("https://bioconductor.org/biocLite.R")
+#biocLite("sangerseqR")
+
+suppressPackageStartupMessages(library(sangerseqR))
+
+hetsangerseq <- readsangerseq(system.file("extdata", "heterozygous.ab1", package = "sangerseqR"))
+str(hetsangerseq)
+
+```
+
+## ppackage::sangerseqR via Bioconductor
+
+```{r b2, echo=TRUE, results=TRUE}
+
+Seq1 <- primarySeq(hetsangerseq)
+reverseComplement(Seq1)
+
+primarySeq(hetsangerseq, string = TRUE)
+
+```
+
+## package::sangerseqR via Bioconductor
+
+```{r b3, echo=TRUE, results=TRUE}
+
+hetcalls <- makeBaseCalls(hetsangerseq, ratio = 0.33)
+hetcalls
+
+```
+
+## package::sangerseqR via Bioconductor
+
+```{r b4, echo=TRUE, results=TRUE}
+
+chromatogram(hetcalls, width = 100, height = 2, trim5 = 50, trim3 = 100, showcalls = "both")
+
+```
+
+## Simple WordCloud...
+
+- https://pl.wikipedia.org/wiki/Bromba_i_inni
+- http://sp23gdansk.pl/wp-content/uploads/2015/12/Maciej-Wojtyszko-Bromba-i-inni.pdf
+
+```{r wc1, echo=TRUE, results=TRUE}
+
+suppressPackageStartupMessages(library(SnowballC))
+suppressPackageStartupMessages(library(tm))
+suppressPackageStartupMessages(library(wordcloud))
+suppressPackageStartupMessages(library(RColorBrewer))
+
+```
+
+- przykład analizy z https://sites.google.com/site/miningtwitter/questions/talking-about/wordclouds/wordcloud1
+
+## Simple WordCloud...
+
+```{r wc2, echo=TRUE, results=TRUE}
+
+filePath <- "C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\help\\Maciej-Wojtyszko-Bromba-i-inni.txt"
+text <- readLines(filePath)
+
+docs <- Corpus(VectorSource(text))
+
+head(inspect(docs))
+
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
+
+docs <- tm_map(docs, content_transformer(tolower))
+docs <- tm_map(docs, removeNumbers)
+docs <- tm_map(docs, removeWords, stopwords("english"))
+docs <- tm_map(docs, removePunctuation)
+docs <- tm_map(docs, stripWhitespace)
+
+```
+
+## Simple WordCloud...
+
+```{r wc3, echo=TRUE, results=TRUE}
+
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+head(d, 10)
+
+```
+
+## Simple WordCloud...
+
+```{r wc4, echo=TRUE, results=TRUE}
+
+set.seed(1234)
+wordcloud(words = d$word, freq = d$freq, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+
+```
+
+## Pakiety wykorzystywane wcześniej
+
+- rmarkdown
+- knitr
+- moments
+- corrplot
+- agricolae
+- oraz inne https://awesome-r.com 
+
+
+## Dziękuję za uwagę
+
+<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
