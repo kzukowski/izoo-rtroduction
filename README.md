@@ -1,5 +1,5 @@
 # izoo-rtroduction
-## Kurs R dla doktorantów IZ-PIB
+### Kurs R dla doktorantów IZ-PIB
 
 **ŚRODA, 15.02.2017**
 - Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych.
