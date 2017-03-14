@@ -107,7 +107,7 @@ library("installr")
 
 ## package::readr
 
-- pakiet umożiwiające wczytywanie plików
+- pakiet umożiwiający wczytywanie plików
 - https://github.com/tidyverse/readr
 - domyślny dla "Import Dataset" w RStudio
 
@@ -164,7 +164,7 @@ dim(myData_red1); dim(myData_red2)
 
 ## package::readxl
 
-- pakiet umożiwiające wczytywanie plików z Microsoft Excel
+- pakiet umożiwiający wczytywanie plików z Microsoft Excel
 - https://github.com/tidyverse/readxl
 
 ```{r w9a, echo=TRUE, results=TRUE}
@@ -189,7 +189,7 @@ forestfires
 
 ## package::rio
 
-- pakiet umożiwiające wczytywanie i zapisywanie plików
+- pakiet umożiwiający wczytywanie i zapisywanie plików
 - https://cran.r-project.org/web/packages/rio/vignettes/rio.html
 - dwie funkcje import() i export()
 
@@ -204,7 +204,7 @@ head(import(paste0(path, "forestfires.xlsx")))
 
 ## package::validate
 
-- pakiet umożiwiające walidację wczytanych danych
+- pakiet umożiwiający walidację wczytanych danych
 - https://github.com/data-cleaning/validate
 
 ```{r w11, echo=TRUE, results=TRUE}
@@ -220,7 +220,7 @@ forestfires %>% check_that(wind < 5) %>% summary()
 
 ## package::dplyr
 
-- pakiet umożiwiające transformację danych
+- pakiet umożiwiający transformację danych
 - https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
 
 ```{r w12, echo=TRUE, results=TRUE}
@@ -279,7 +279,7 @@ head(per_day <- summarise(daily, n_rain = n()))
 
 ## package::ggplot2
 
-- pakiet umożiwiające wizualizację danych
+- pakiet umożiwiający wizualizację danych
 - https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
 - https://www.datacamp.com/courses/data-visualization-with-ggplot2-1
 
