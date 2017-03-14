@@ -21,7 +21,7 @@
 
 [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/97601725/lectures/four.html)
 
-###Ważne strony i kursy R:
+### Ważne strony i kursy R:
 
 https://github.com/mi2-warsaw/SER/blob/master/histoRia/ <br />
 **http://whyr.pl** <br />
