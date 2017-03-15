@@ -11,7 +11,7 @@
 - Testowanie.... [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/three.html)
 
 **ŚRODA, 15.03.2017**
-- Pakiety, wtyczki, rozszerzenia... [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/97601725/lectures/four.html)
+- Pakiety, wtyczki, rozszerzenia... [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/845698f0/lectures/four.html)
 
 ### Polecane strony i kursy R
 
