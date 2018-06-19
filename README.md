@@ -24,6 +24,7 @@ http://biecek.pl/R/ <br />
 https://rweekly.org <br />
 https://www.r-bloggers.com <br />
 
+http://socviz.co/appendix.html <br />
 https://www.rstudio.com/online-learning/ <br />
 https://www.coursera.org/courses?query=R <br />
 https://www.datacamp.com/community/search?utf8=✓&query=R <br />
