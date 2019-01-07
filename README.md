@@ -1,16 +1,16 @@
 # izoo-rtroduction
 ### Kurs R dla doktorantów IZ-PIB
 
-**PIĄTEK, 22 luty 2019, godz. 13:00 - 14:30**
+**PIĄTEK, 22.02.2019, godz. 13:00 - 14:30**
 - Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych. [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/one.html)
 
-**PIĄTEK, 22 marzec 2019, godz. 14:45 - 16:15**
+**PIĄTEK, 22.03.2019, godz. 14:45 - 16:15**
 - Grafika w R. Korelacja i regresja, modele liniowe. [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/two.html)
 
-**PIĄTEK, 5 kwiecień 2019, godz. 13:00 - 14:30**
+**PIĄTEK, 5.04.2019, godz. 13:00 - 14:30**
 - Testowanie.... [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/three.html)
 
-**PIĄTEK, 10 maja 2019, godz. 14:45 - 16:15**
+**PIĄTEK, 10.05.2019, godz. 14:45 - 16:15**
 - Pakiety, wtyczki, rozszerzenia... [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/845698f0/lectures/four.html)
 
 **FORMA ZALICZENIA PRZEDMIOTU**
