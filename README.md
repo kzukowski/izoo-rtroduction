@@ -14,7 +14,7 @@
 - Pakiety, wtyczki, rozszerzenia... [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/845698f0/lectures/four.html)
 
 **FORMA ZALICZENIA PRZEDMIOTU**
-Na ostatnich zajęciach (10 maja 2019, godz. 14:45 - 16:15) każda z osób winna przygotować pokaz, prezentację z jakiejś wtyczki, pakietu, rozszerzenia z "Pakiety, wtyczki, rozszerzenia... prezentacja wraz z Rkodem w katalogu "lectures"" lub jakiegoś innego pakietu z https://www.rpackages.io/, https://cran.r-project.org/web/packages/available_packages_by_name.html, https://bioconductor.org/packages/release/bioc/ i pokazać wszystkim w tym mnie w formie prezentacji (ze skryptu lub przentacja powerpoint/pdf). Dane (skrypt/prezentacja) powinny być wysłane do mnie tydzień wcześniej na adres kacper.zukowski[at]izoo.krakow.pl
+Na ostatnich zajęciach (5.04.2019, godz. 13:00 - 14:30) każda z osób winna przygotować pokaz, prezentację z jakiejś wtyczki, pakietu, rozszerzenia z "Pakiety, wtyczki, rozszerzenia... prezentacja wraz z Rkodem w katalogu "lectures"" lub jakiegoś innego pakietu z https://www.rpackages.io/, https://cran.r-project.org/web/packages/available_packages_by_name.html, https://bioconductor.org/packages/release/bioc/ i pokazać wszystkim w tym mnie w formie prezentacji (ze skryptu lub przentacja powerpoint/pdf). Dane (skrypt/prezentacja) powinny być wysłane do mnie tydzień wcześniej na adres kacper.zukowski[at]izoo.krakow.pl
 
 ### Polecane strony i kursy R
 
