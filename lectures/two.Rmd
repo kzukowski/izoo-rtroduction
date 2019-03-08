@@ -1,7 +1,7 @@
 ---
 title: '2: Korelacja i regresja, modele liniowe'
 author: "Kacper Żukowski"
-date: "20 February 2017"
+date: "8 marca 2018"
 output:
   ioslides_presentation:
     widescreen: true
@@ -89,7 +89,7 @@ read.table(file, header = FALSE, sep = "", quote = "\"'", dec = ".",
 
 ```{r prak7, echo=TRUE, results=TRUE}
 
-path <- "C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\data\\winequality\\"
+path <- "D:\\OneDrive\\20170215_izoo-rtroduction\\data\\winequality\\"
 
 
 myData_red <- read.table(paste0(path, "winequality-red.csv"), 
@@ -583,5 +583,5 @@ plot(postHoc)
 
 ## Dziękuję za uwagę
 
-<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
+<img src="D:\\OneDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
 

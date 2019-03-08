@@ -1,7 +1,7 @@
 ---
 title: "Wprowadzenie do środowiska R"
 author: "Kacper Żukowski"
-date: "15 luty 2017"
+date: "22 luty 2019"
 output:
   ioslides_presentation:
     widescreen: true
@@ -34,13 +34,13 @@ citation()
 
 - to najszybciej rozwijający się **język prorgamowania/pakiet statystyczny**,
 
-<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\6a010534b1db25970b01b7c7fd58db970b-800wi.png" width="600">
+<img src="D:\\OneDrive\\20170215_izoo-rtroduction\\graph\\20180728_WOC883.png" width="600">
 
 ## Dlaczego Pakiet R?
 
 - możliwość tworzenia i upowszechnianie **pakietów** (CRAN, GitHub),
 
-<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\R-packages-growth-rate.png" width="700">
+<img src="D:\\OneDrive\\20170215_izoo-rtroduction\\graph\\R-packages-growth-rate.png" width="700">
 
 ## Dlaczego Pakiet R?
 
@@ -51,7 +51,7 @@ citation()
 - **darmowy**,
 - **tworzy grafiki o wysokiej jakości**,
 - raporty __rmarkdown__ http://rmarkdown.rstudio.com/gallery.html, 
-- prezentacje <img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\showpoint-3-select-a-powerpoint-presentation.png" width="20"> ,
+- prezentacje <img src="D:\\OneDrive\\20170215_izoo-rtroduction\\graph\\showpoint-3-select-a-powerpoint-presentation.png" width="20"> ,
 - książki https://bookdown.org/yihui/bookdown/ http://r4ds.had.co.nz
 - aplikcje __shiny__ https://shiny.rstudio.com/gallery/
 
@@ -71,7 +71,7 @@ library(networkD3)
 
 # koment
 
-dat <- read.csv("C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\help\\20170206_MS_pedigree.csv", na = c("-"))
+dat <- read.csv("D:\\OneDrive\\20170215_izoo-rtroduction\\help\\20170206_MS_pedigree.csv", na = c("-"))
 dat <- as.data.frame(dat)
 
 head(dat)
@@ -115,6 +115,8 @@ dat2$inbreeding <- inbreeding(ped4)
 ped_tmp <- as.data.table(ped3)
 setnames(ped_tmp, "label", "id")
 
+library(dplyr)
+
 dat2 <- as.data.table(dat2)
 dat2 <- as.data.table(left_join(dat2, ped_tmp))
 
@@ -133,7 +135,7 @@ networkData <- data.frame(src, target)
 
 ```{r pressure, echo = TRUE, warning=FALSE, message=FALSE, results="asis"}
 
-simpleNetwork(networkData, fontSize = 12, linkDistance = 50, zoom = T, textColour = "#000000")
+simpleNetwork(networkData, fontSize = 12, linkDistance = 50, zoom = T, linkColour = "#ff3300", nodeColour = "#3182bd")
 
 ```
 
@@ -202,13 +204,13 @@ help.search("mean")
 
 ## Co jeszcze?
 
-- 15.02.2017 Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych.
+- 22.02.2019 Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych.
 
-- 22.02.2017 Grafika w R. Korelacja i regresja, modele liniowe.
+- 8.03.2019 Grafika w R. Korelacja i regresja, modele liniowe.
 
-- 01.03.2017 Testowanie....
+- 22.03.2019 Testowanie....
 
-- 15.03.2017 Pakiety, wtyczki, rozszerzenia...
+- 5.04.2019 Pakiety, wtyczki, rozszerzenia... Zaliczenie przedmiotu
 
 ## Część praktyczna
 
@@ -325,5 +327,5 @@ summary(myData)
 
 ## Dziękuję za uwagę
 
-<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
+<img src="D:\\OneDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
 
