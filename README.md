@@ -2,16 +2,16 @@
 ### Kurs R dla doktorantów IZ-PIB
 
 **PIĄTEK, 22.02.2019, godz. 13:00 - 14:30**
-- Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych. [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/one.html)
+- Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych. [prezentacja wraz z Rkodem w katalogu "lectures"](https://github.com/kzukowski/izoo-rtroduction/blob/master/lectures/one.html)
 
 **PIĄTEK, 8.03.2019, godz. 13:00 - 14:30**
-- Grafika w R. Korelacja i regresja, modele liniowe. [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/two.html)
+- Grafika w R. Korelacja i regresja, modele liniowe. [prezentacja wraz z Rkodem w katalogu "lectures"](https://github.com/kzukowski/izoo-rtroduction/blob/master/lectures/two.html)
 
 **PIĄTEK, 22.03.2019, godz. 14:45 - 16:15**
-- Testowanie.... [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/three.html)
+- Testowanie.... [prezentacja wraz z Rkodem w katalogu "lectures"](https://github.com/kzukowski/izoo-rtroduction/blob/master/lectures/three.html)
 
 **PIĄTEK, 5.04.2019, godz. 13:00 - 14:30**
-- Pakiety, wtyczki, rozszerzenia... [prezentacja wraz z Rkodem w katalogu "lectures"](https://cdn.rawgit.com/kzukowski/izoo-rtroduction/845698f0/lectures/four.html)
+- Pakiety, wtyczki, rozszerzenia... [prezentacja wraz z Rkodem w katalogu "lectures"](https://github.com/kzukowski/izoo-rtroduction/blob/master/lectures/four.html)
 
 **FORMA ZALICZENIA PRZEDMIOTU**
 Na ostatnich zajęciach (5.04.2019, godz. 13:00 - 14:30) każda z osób winna przygotować pokaz, prezentację z jakiejś wtyczki, pakietu, rozszerzenia z "Pakiety, wtyczki, rozszerzenia... prezentacja wraz z Rkodem w katalogu "lectures"" lub jakiegoś innego pakietu z https://www.rpackages.io/, https://cran.r-project.org/web/packages/available_packages_by_name.html, https://bioconductor.org/packages/release/bioc/ i pokazać wszystkim w tym mnie w formie prezentacji (ze skryptu lub przentacja powerpoint/pdf). Dane (skrypt/prezentacja) powinny być wysłane do mnie tydzień wcześniej na adres kacper.zukowski[at]izoo.krakow.pl
