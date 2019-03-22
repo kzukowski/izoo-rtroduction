@@ -1,7 +1,7 @@
 ---
 title: "Testowanie..."
 author: "Kacper Żukowski"
-date: "1 marca 2017"
+date: "22 marca 2017"
 output:
   ioslides_presentation:
     widescreen: true
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ## Wybór testu
-<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\schemat.jpg" width="1000">
+<img src="C:\\Users\\kacper.zukowski\\OneDrive\\20170215_izoo-rtroduction\\graph\\testowanie.png" width="1000">
 
 ## Generowanie rozkładów liczb
 
@@ -527,7 +527,7 @@ bar.err(out$means, horiz=T, xlim=c(0, 50))
 
 ## Dziękuję za uwagę
 
-<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
+<img src="C:\\Users\\kacper.zukowski\\OneDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
 
 ## Bonus!
 

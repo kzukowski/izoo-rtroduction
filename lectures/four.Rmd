@@ -1,7 +1,7 @@
 ---
 title: "Pakiety, wtyczki, rozszerzenia..."
 author: "Kacper Żukowski"
-date: "15 marca 2017"
+date: "5 kwietnia 2017"
 output:
   ioslides_presentation:
     widescreen: true
@@ -126,7 +126,7 @@ library(readr)
 
 ```{r w8, echo=TRUE, results=TRUE}
 
-path <- "C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\data\\winequality\\"
+path <- "C:\\Users\\kacper.zukowski\\OneDrive\\20170215_izoo-rtroduction\\data\\winequality\\"
 
 myData_red1 <- read.table(paste0(path, "winequality-red.csv"), 
                         sep = ";", header = T)
@@ -173,7 +173,7 @@ dim(myData_red1); dim(myData_red2)
 #devtools::install_github("tidyverse/readxl")
 
 library(readxl)
-path <- "C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\data\\forestfires\\"
+path <- "C:\\Users\\kacper.zukowski\\OneDrive\\20170215_izoo-rtroduction\\data\\forestfires\\"
 
 forestfires <- read_excel(paste0(path, "forestfires.xlsx"), sheet = 1)
 
@@ -444,17 +444,42 @@ Anova(lm1 <- lm(DV ~ IV, data=sample.data, contrasts=list(IV=contr.poly)), type=
 
 ```{r w17, echo=TRUE, results=TRUE}
 
+#install.packages(ggmap)
+#install.packages(ggplot2)
+#install.packages(rnaturalearth)
+#install.packages(sp)
+#install.packages(rgeos)
+#install.packages(hrbrthemes)
+#install.packages(mapproj)
+
 suppressPackageStartupMessages(library(ggmap))
 suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(rnaturalearth))
+suppressPackageStartupMessages(library(sp))
+suppressPackageStartupMessages(library(rgeos))
+suppressPackageStartupMessages(library(hrbrthemes))
+suppressPackageStartupMessages(library(mapproj))
 
-path="C:/Users/kacper.zukowski/Dropbox/KS-KZ/Mapy/"
-d=as.data.frame(read.csv(paste0(path, "position.csv"), sep=",", header=T))
-#head(d)
+```
 
-kk <- paste("feature:road|element:geometry|visibility:off","&style=feature:all|element:labels|visibility:off", sep="")
-map <- get_googlemap(zoom = 6, maptype = 'terrain', style = kk, scale = 2, color = "bw", center = c(lon = 18.7, lat=52.7))
+## package::ggmap
 
-d1 <- d[d[,4]=="sa",]
+- pakiet umożliwiający rysowanie map via GoogleMaps 
+
+```{r w17wa, echo=TRUE, results=TRUE}
+
+world <- rnaturalearth::countries110
+europe <- world[world$region_un=="Europe"&world$name!='Russia',]
+# plot(europe)
+# Let's add a unique ID column to our data.
+europe@data$id <- row.names(europe@data)
+# A bounding box for continental Europe.
+europe.bbox <- SpatialPolygons(list(Polygons(list(Polygon(
+  matrix(c(-25,29,45,29,45,75,-25,75,-25,29),byrow = T,ncol = 2)
+)), ID = 1)), proj4string = CRS(proj4string(europe)))
+# Get polygons that are only in continental Europe.
+europe.clipped <-
+   rgeos::gIntersection(europe, europe.bbox, byid = TRUE, id=europe$id)
 
 ```
 
@@ -462,8 +487,15 @@ d1 <- d[d[,4]=="sa",]
 
 ```{r w18, echo=TRUE, results=TRUE}
 
-p <- ggmap(map)
-p
+suppressWarnings(print(europe.tidy <- broom::tidy(europe.clipped)))
+
+```
+
+## package::ggmap
+
+```{r w18a, echo=TRUE, results=TRUE}
+
+suppressWarnings(print(europe.tidy <- dplyr::left_join(europe.tidy, europe@data, by='id')))
 
 ```
 
@@ -471,16 +503,16 @@ p
 
 ```{r w19, echo=TRUE, results=TRUE}
 
-p <- ggmap(map) + geom_point(aes(x=d1[1,2], y=d1[1,1]), color="black", size = 1, stroke = 5) +
-geom_point(aes(x=d1[2,2], y=d1[2,1]), color="red", size = 5, stroke = 5) +
-geom_point(aes(x=d1[3,2], y=d1[3,1]), color="blue", size=2) +
-geom_point(aes(x=d1[4,2], y=d1[4,1]), color="darkred", size=3, shape = 21) +
-geom_point(aes(x=d1[5,2], y=d1[5,1]), color="green", size = 7, stroke = 2) +
-geom_point(aes(x=d1[6,2], y=d1[6,1]), color="salmon", size=4, shape = 18) +
-geom_point(aes(x=d1[7,2], y=d1[7,1]), color="darkblue", size = 5, stroke = 3) +
-geom_point(aes(x=d1[8,2], y=d1[8,1]), color="white", size=2, shape = 17) +
-geom_point(aes(x=d1[9,2], y=d1[9,1]), color="pink", size = 5, stroke = 6) +
-geom_point(aes(x=d1[10,2], y=d1[10,1]), color="orange", size = 6, shape = 20)
+library(ggplot2)
+p <- ggplot(europe.tidy, aes(long,lat, group=group,fill=gdp_md_est/1000)) +
+  geom_polygon(alpha=0.8,color='black') +
+  coord_map("azequalarea") +
+  hrbrthemes::theme_ipsum_rc() +
+  viridis::scale_fill_viridis(
+    name='Median GDP \n(in Billions)', direction = -1, labels=scales::dollar) +
+  labs(x=NULL, y=NULL, 
+       title='Median GDP Estimates of\nContinental Europe & Iceland',
+       caption='Source: http://www.naturalearthdata.com/')
 
 ```
 
@@ -488,7 +520,7 @@ geom_point(aes(x=d1[10,2], y=d1[10,1]), color="orange", size = 6, shape = 20)
 
 ```{r w20, echo=TRUE, results=TRUE}
 
-p
+suppressWarnings(print(p))
 
 ```
 
@@ -496,8 +528,21 @@ p
 
 ```{r 21, echo=TRUE, results=TRUE}
 
-map <- get_googlemap(zoom = 6, maptype = 'roadmap', style = kk, scale = 2, color = "color", center = c(lon = 0, lat=52.7))
-ggmap(map)
+library(sf)
+world <- st_as_sf(rnaturalearth::countries110)
+europe <- dplyr::filter(world, region_un=="Europe" & name!='Russia')
+# A bounding box for continental Europe.
+europe.bbox <- st_polygon(list(
+  matrix(c(-25,29,45,29,45,75,-25,75,-25,29),byrow = T,ncol = 2)))
+europe.clipped <- st_intersection(europe, st_sfc(europe.bbox, crs=st_crs(europe)))
+p <- ggplot(europe.clipped, aes(fill=gdp_md_est/1000)) +
+  geom_sf(alpha=0.8,col='white') +
+   coord_sf(crs="+proj=aea +lat_1=36.333333333333336 +lat_2=65.66666666666667 +lon_0=14") +
+  hrbrthemes::theme_ipsum_rc() +
+  viridis::scale_fill_viridis(
+    name='Median GDP \n(in Billions)', direction = -1, labels=scales::dollar) +
+  labs(x=NULL, y=NULL, title=NULL,
+       caption='Source: http://www.naturalearthdata.com/')
 
 ```
 
@@ -505,17 +550,7 @@ ggmap(map)
 
 ```{r w22, echo=TRUE, results=TRUE}
 
-map <- get_googlemap(zoom = 3, maptype = 'hybrid', style = kk, scale = 2, color = "bw", center = c(lon = 18.7, lat=20))
-ggmap(map)
-
-```
-
-## package::ggmap
-
-```{r w23, echo=TRUE, results=TRUE}
-
-map <- get_googlemap(zoom = 18, maptype = 'hybrid', style = kk, scale = 2, color = "color", center = c(lon = 19.788, lat=50.086))
-ggmap(map)
+suppressWarnings(print(p))
 
 ```
 
@@ -597,7 +632,7 @@ suppressPackageStartupMessages(library(RColorBrewer))
 
 ```{r wc2, echo=TRUE, results=TRUE}
 
-filePath <- "C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\help\\Maciej-Wojtyszko-Bromba-i-inni.txt"
+filePath <- "C:\\Users\\kacper.zukowski\\OneDrive\\20170215_izoo-rtroduction\\help\\Maciej-Wojtyszko-Bromba-i-inni.txt"
 text <- readLines(filePath)
 
 docs <- Corpus(VectorSource(text))
@@ -650,4 +685,4 @@ wordcloud(words = d$word, freq = d$freq, min.freq = 1,
 
 ## Dziękuję za uwagę
 
-<img src="C:\\Users\\kacper.zukowski\\SkyDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
+<img src="C:\\Users\\kacper.zukowski\\OneDrive\\20170215_izoo-rtroduction\\graph\\Thank-You-message2_edited-1.png" width="900">
