@@ -5,10 +5,10 @@
 - Wprowadzenie do środowiska R (opis podstawowych funkcji, wczytywanie i zapisywanie danych). Analiza danych statystycznych. [prezentacja wraz z Rkodem w katalogu "lectures"](https://raw.githack.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/one.html)
 
 **PIĄTEK, 8.03.2019, godz. 13:00 - 14:30**
-- Grafika w R. Korelacja i regresja, modele liniowe. [prezentacja wraz z Rkodem w katalogu "lectures"](https://github.com/kzukowski/izoo-rtroduction/blob/master/lectures/two.html)
+- Grafika w R. Korelacja i regresja, modele liniowe. [prezentacja wraz z Rkodem w katalogu "lectures"](https://raw.githack.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/two.html)
 
 **PIĄTEK, 22.03.2019, godz. 14:45 - 16:15**
-- Testowanie.... [prezentacja wraz z Rkodem w katalogu "lectures"](https://github.com/kzukowski/izoo-rtroduction/blob/master/lectures/three.html)
+- Testowanie.... [prezentacja wraz z Rkodem w katalogu "lectures"](https://raw.githack.com/kzukowski/izoo-rtroduction/e9b8aa77/lectures/three.html)
 
 **PIĄTEK, 5.04.2019, godz. 13:00 - 14:30**
 - Pakiety, wtyczki, rozszerzenia... [prezentacja wraz z Rkodem w katalogu "lectures"](https://github.com/kzukowski/izoo-rtroduction/blob/master/lectures/four.html)
